@@ -1,0 +1,2 @@
+# HotelSummary
+"TripAdvisor: Hotel" website
