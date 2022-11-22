@@ -24,7 +24,7 @@ function HotelsMap() {
       ];
 
     useEffect(() => {
-        getHotelsByYear(yearCommitted.toString())
+        getHotelsByYear(yearCommitted)
             .then((res) => {
                 setHotels(res.data)
             })

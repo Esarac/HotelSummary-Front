@@ -26,7 +26,7 @@ function RatePage() {
     return (
         <div>
             <Container className="pb-3">
-                <h1>Rate review</h1>
+                <h1>Rate</h1>
                 <Form className="py-3">
                     <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
                         <Form.Control

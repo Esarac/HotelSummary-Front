@@ -1,43 +1,87 @@
 import React, { useState } from 'react'
 import { Form, Row, Col, Container } from 'react-bootstrap'
-import { Button } from '@mui/material'
+import { Box, Button, Slider } from '@mui/material'
 import './SearchPage.css'
 import { searchHotel } from '../services/hotelService'
 import CardView from '../components/card/CardView'
 
 function SearchPage() {
     const [searchValue, setSearchValue] = useState<string>('')
+    const [year, setYear] = useState<number>(2022)
     const [hotels, setHotels] = useState<React.ReactNode>(null)
 
-
     const search = (value: string) => {
+
         if (value.length > 0) {
-            searchHotel(value)
-            .then((res) => {
-                let found = res.data
-                if (found.length > 0)
-                    setHotels(found.map((hotel) => {
-                        return (
-                            <CardView hotel={hotel}></CardView>
+            searchHotel(value, year)
+                .then((res) => {
+                    let found = res.data
+                    if (found.length > 0)
+                        setHotels(
+                            <>
+                                <div className='message'>
+                                    <small className='text-muted'>Searching "{searchValue}" - {found.length} results ({year})</small>
+                                </div>
+                                {
+                                    found.map((hotel) => {
+                                        return (
+                                            <CardView hotel={hotel}></CardView>
+                                        )
+                                    })
+                                }
+                            </>
                         )
-                    }))
-                else
+                    else
+                        setHotels(
+                            <div className='message'>
+                                <small className='text-muted'>Searching "{searchValue}" - 0 results ({year})</small>
+                            </div>
+                        )
+                })
+                .catch((e) => {
                     setHotels(
                         <div className='message'>
-                            <h5>Not found</h5>
+                            <small className='text-muted'>Error - Try again</small>
                         </div>
                     )
-            })
-            .catch((e) => {
-                console.log(e)
-            })
+                })
+        }
+        else {
+            setHotels(
+                <div className='message'>
+                    <small className='text-muted'>Searching "" - 0 results ({year})</small>
+                </div>
+            )
         }
     }
+
+    const marks = [
+        {
+            value: 2003,
+            label: '2003',
+        },
+        {
+            value: 2022,
+            label: '2022',
+        }
+    ];
 
     return (
         <Container className="pb-3">
             <h1>Search</h1>
             <Form>
+                <Form.Group>
+                    <Box width={500} className="ps-3">
+                        <Slider
+                            style={{ marginTop: 38 }}
+                            value={year}
+                            max={2022}
+                            min={2003}
+                            valueLabelDisplay="on"
+                            onChange={(_, value) => setYear(value as number)}
+                            marks={marks} />
+                    </Box>
+                </Form.Group>
                 <Form.Group>
                     <Form.Label>Hotel name</Form.Label>
                     <Row>
