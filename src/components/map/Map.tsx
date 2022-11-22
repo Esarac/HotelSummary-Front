@@ -5,6 +5,8 @@ import L from 'leaflet';
 import React, { useEffect, useState } from "react";
 import { Hotel } from "../../models/models";
 import Button from '@mui/material/Button';
+import { Modal } from "../modal/modal";
+import InfoForm from "../infoForm/infoForm";
 
 // @ts-ignore
 delete L.Icon.Default.prototype._getIconUrl;
@@ -82,9 +84,20 @@ const icons: { [name: string]: Icon } = {
 }
 
 function Map(props: Props) {
+  const [modal, setModal] = useState<React.ReactNode>(null)
+
+  const setHotelModal = (hotel: Hotel) => {
+    console.log('ENTERED')
+    setModal(
+      <Modal show={true} onClose={() => setModal(null)} title="Hotel information">
+        <InfoForm hotel={hotel}></InfoForm>
+      </Modal>
+    )
+  }
 
   return (
     <div>
+      {modal}
       <MapContainer center={[50, 9]} zoom={6} scrollWheelZoom={true} style={{ height: "83vh", width: "100%" }}>
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -98,7 +111,7 @@ function Map(props: Props) {
                 <div>
                   <p><strong>Hotel: </strong> {hotel['HOTEL_NAME']}</p>
                   <p><strong>Rating: </strong>{hotel['OVERALL_RATING']}</p>
-                  <Button variant="contained">More Info</Button>
+                  <Button variant="contained" onClick={() => setHotelModal(hotel)}>More Info</Button>
                 </div>
               </Popup>
             </Marker>
