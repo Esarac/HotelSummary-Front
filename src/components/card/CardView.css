@@ -2,13 +2,13 @@
     margin-top: 30px;
 }
 
-.footer {
+.Cardfooter {
     margin-top: 5px;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
 }
 
-.container {
-    margin-top: 5px;
-    margin-left: 5px;
-    margin-right: 5px !important;
+.Cardcontainer {
+    margin-top: 10px;
+    margin-left: 15px;
+    margin-right: 15px;
 }

@@ -12,7 +12,7 @@ interface Props {
 function CardView(props: Props) {
 
   const card = (
-    <div className='container'>
+    <div className='Cardcontainer'>
       <p><strong>{props.hotel['HOTEL_NAME']} </strong></p>
       <p>
         <Bubbles value={props.hotel['OVERALL_RATING']} />
@@ -29,7 +29,7 @@ function CardView(props: Props) {
         <br />
         <small><Bubbles value={props.hotel['LM_RATING']} /> <small className="text-muted">LM</small></small>
       </div>
-      <div className='footer'>
+      <div className='Cardfooter'>
         <i>{props.hotel['ADDRESS']} ({props.hotel['REVIEW_DATE']})</i>
       </div>
     </div>
