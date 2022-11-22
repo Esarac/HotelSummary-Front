@@ -1,13 +1,11 @@
 import React from "react";
 import Map from "./components/map/Map";
+import HotelsMaps from './pages/HotelsMap'
 
 
 function App() {
   return (
-    <div>
-      <h1>Map</h1>
-      <Map></Map>
-    </div>
+    <HotelsMaps></HotelsMaps>
   );
 }
 
