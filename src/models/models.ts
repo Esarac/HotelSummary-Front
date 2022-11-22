@@ -12,3 +12,10 @@ export interface Hotel {
     ADDRESS: string,
     VADER_RATING: number
 }
+
+export interface RatingData {
+    OVERALL_RATING: number,
+    VADER_RATING: number
+    HIV4_RATING: number,
+    LM_RATING: number,
+}
