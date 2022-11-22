@@ -8,6 +8,7 @@ interface Props {
     onClose: () => void
     children?: React.ReactNode
     buttons?: React.ReactElement<typeof Button>[]
+    footer?: React.ReactNode
 }
 
 export function Modal(props: Props) {
@@ -18,7 +19,6 @@ export function Modal(props: Props) {
             size="lg"
             centered>
             <RModal.Header
-                closeVariant="black"
                 closeButton>
                 <RModal.Title>{props.title}</RModal.Title>
             </RModal.Header>
@@ -28,13 +28,7 @@ export function Modal(props: Props) {
             </RModal.Body>
             <RModal.Footer
             >
-                {props.buttons?.map((button, index)=>{
-                    return(
-                        <div key={index}>
-                            {button}
-                        </div>
-                    )
-                })}
+                {props.footer}
             </RModal.Footer>
         </RModal>
     )

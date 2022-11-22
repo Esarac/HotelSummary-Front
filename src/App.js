@@ -1,11 +1,22 @@
 import React from "react";
-import Map from "./components/map/Map";
-import HotelsMaps from './pages/HotelsMap'
-
+import Header from './components/header/Header'
+import Footer from './components/footer/Footer'
+import routes from './config/router'
 
 function App() {
   return (
-    <HotelsMaps></HotelsMaps>
+    <div>
+      <header>
+        <Header/>
+      </header>
+      <main>
+        {routes}
+      </main>
+      <footer>
+        <Footer/>
+      </footer>
+    </div>
+    
   );
 }
 

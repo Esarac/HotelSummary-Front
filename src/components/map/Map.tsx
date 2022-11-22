@@ -87,12 +87,35 @@ function Map(props: Props) {
   const [modal, setModal] = useState<React.ReactNode>(null)
 
   const setHotelModal = (hotel: Hotel) => {
-    console.log('ENTERED')
     setModal(
-      <Modal show={true} onClose={() => setModal(null)} title="Hotel information">
+      <Modal show={true} onClose={() => setModal(null)} title={hotel['HOTEL_NAME']} footer={<i>{hotel['ADDRESS']} ({hotel['REVIEW_DATE']})</i>}>
         <InfoForm hotel={hotel}></InfoForm>
       </Modal>
     )
+  }
+
+  const colorButton = (rating: number) => {
+    let classname: "error" | "inherit" | "warning" | "primary" | "secondary" | "success" | "info" = "info"
+
+    switch(rating){
+      case 1:
+        classname = "error"
+      break;
+      case 2:
+        classname = "secondary"
+      break;
+      case 3:
+        classname = "primary"
+      break;
+      case 4:
+        classname = "success"
+      break;
+      case 5:
+        classname = "warning"
+      break;
+    }
+
+    return classname
   }
 
   return (
@@ -106,12 +129,12 @@ function Map(props: Props) {
         <SearchControl />
         {props.hotels.map((hotel) => {
           return (
-            <Marker position={[hotel['LATITUDE'] || 0, hotel['LONGITUDE'] || 0]} icon={icons[hotel['OVERALL_RATING']].icon}>
+            <Marker key={hotel["HOTEL_NAME"]} position={[hotel['LATITUDE'] || 0, hotel['LONGITUDE'] || 0]} icon={icons[hotel['OVERALL_RATING']].icon}>
               <Popup>
                 <div>
                   <p><strong>Hotel: </strong> {hotel['HOTEL_NAME']}</p>
                   <p><strong>Rating: </strong>{hotel['OVERALL_RATING']}</p>
-                  <Button variant="contained" onClick={() => setHotelModal(hotel)}>More Info</Button>
+                  <Button variant="contained" color={colorButton(hotel['OVERALL_RATING'])} onClick={() => setHotelModal(hotel)}>More Info</Button>
                 </div>
               </Popup>
             </Marker>
