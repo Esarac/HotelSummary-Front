@@ -34,6 +34,7 @@ function RatePage() {
                             rows={3}
                             value={review}
                             onChange={(e) => setReview(e.target.value)}
+                            placeholder='Please enter the review'
                         />
                     </Form.Group>
                     <Button variant="contained" onClick={submitReview}>Rate</Button>
