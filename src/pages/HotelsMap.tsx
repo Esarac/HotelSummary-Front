@@ -23,16 +23,24 @@ function HotelsMap() {
       ];
 
     useEffect(() => {
-        console.log('ENTERED')
         getHotelsByYear(year.toString())
             .then((res) => {
-                console.log('SUCESSFUL')
                 setHotels(res.data)
             })
             .catch((e) => {
                 console.log(e)
             })
-    }, [hotels, year])
+    }, [])
+
+    useEffect(() => {
+        getHotelsByYear(year.toString())
+            .then((res) => {
+                setHotels(res.data)
+            })
+            .catch((e) => {
+                console.log(e)
+            })
+    }, [year])
 
     return (
         <div>

@@ -5,6 +5,7 @@ import L from 'leaflet';
 import React, { useEffect, useState } from "react";
 import { Hotel } from "../../models/models";
 
+// @ts-ignore
 delete L.Icon.Default.prototype._getIconUrl;
 
 L.Icon.Default.mergeOptions({
@@ -18,27 +19,22 @@ interface Props {
 }
 
 function Map(props: Props) {
-  const [hotels, setHotels] = useState<Hotel[]>(props.hotels)
-
-  useEffect(() => {
-    setHotels(props.hotels)
-  }, [])
 
   return (
     <div>
-      <MapContainer center={[51.505, -0.09]} zoom={14} scrollWheelZoom={true} style={{ height: "83vh", width: "100%" }}>
+      <MapContainer center={[50, 9]} zoom={6} scrollWheelZoom={true} style={{ height: "83vh", width: "100%" }}>
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
         <SearchControl />
-        {hotels.map((hotel) => {
+        {props.hotels.map((hotel) => {
           return (
-            <Marker position={[hotel.lat, hotel.long]}>
+            <Marker position={[hotel['LATITUDE'] || 0, hotel['LONGITUDE'] || 0]}>
               <Popup>
                 <div>
-                  <h5>{'Hotel: ' + hotel.name}</h5>
-                  <h5>{'Rating: ' + hotel.OverallRating}</h5>
+                  <h5>{'Hotel: ' + hotel['HOTEL_NAME']}</h5>
+                  <h5>{'Rating: ' + hotel['OVERALL_RATING']}</h5>
                   <button>More Info</button>
                 </div>
               </Popup>
