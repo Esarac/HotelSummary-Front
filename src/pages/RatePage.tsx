@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-import { Container, Form, Button } from 'react-bootstrap'
+import { Container, Form } from 'react-bootstrap'
+import { Button } from '@mui/material'
 import Bubbles from '../components/bubbles/Bubbles'
 import { rateReview } from '../services/hotelService'
 import { RatingData } from '../models/models'
@@ -35,7 +36,7 @@ function RatePage() {
                             onChange={(e) => setReview(e.target.value)}
                         />
                     </Form.Group>
-                    <Button variant='secondary' onClick={submitReview}>Rate</Button>
+                    <Button variant="contained" onClick={submitReview}>Rate</Button>
                 </Form>
                 <p>
                     <Bubbles value={ratings.OVERALL_RATING} />

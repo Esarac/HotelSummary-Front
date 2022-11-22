@@ -20,7 +20,7 @@ export function Modal(props: Props) {
             centered>
             <RModal.Header
                 closeButton>
-                <RModal.Title>{props.title}</RModal.Title>
+                <RModal.Title><strong>{props.title}</strong></RModal.Title>
             </RModal.Header>
             <RModal.Body
             >

@@ -10,6 +10,7 @@ import { Container } from 'react-bootstrap';
 function HotelsMap() {
     const [hotels, setHotels] = useState<Hotel[]>([])
     const [year, setYear] = useState<number>(2022)
+    const [yearCommited, setYearCommited] = useState<number>(2022)
 
     const marks = [
         {
@@ -23,14 +24,14 @@ function HotelsMap() {
       ];
 
     useEffect(() => {
-        getHotelsByYear(year.toString())
+        getHotelsByYear(yearCommited.toString())
             .then((res) => {
                 setHotels(res.data)
             })
             .catch((e) => {
                 console.log(e)
             })
-    }, [year])
+    }, [yearCommited])
 
     return (
         <div>
@@ -40,7 +41,7 @@ function HotelsMap() {
             <Map hotels={hotels}></Map>
             <div className='container d-flex justify-content-center'>
                 <Box width={500}  display="flex" flexDirection="column">
-                    <Slider style={{ marginTop: 38 }}value={year} max={2022} min={2003} valueLabelDisplay="on" onChange={(_, value) => setYear(value as number)} marks={marks} />
+                    <Slider style={{ marginTop: 38 }}value={year} max={2022} min={2003} valueLabelDisplay="on" onChange={(_, value) => setYear(value as number)} onChangeCommitted={(_, value) => setYearCommited(value as number)} marks={marks} />
                 </Box>
             </div>
         </div>

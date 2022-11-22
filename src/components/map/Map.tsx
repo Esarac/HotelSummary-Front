@@ -97,22 +97,22 @@ function Map(props: Props) {
   const colorButton = (rating: number) => {
     let classname: "error" | "inherit" | "warning" | "primary" | "secondary" | "success" | "info" = "info"
 
-    switch(rating){
+    switch (rating) {
       case 1:
         classname = "error"
-      break;
+        break;
       case 2:
         classname = "secondary"
-      break;
+        break;
       case 3:
         classname = "primary"
-      break;
+        break;
       case 4:
         classname = "success"
-      break;
+        break;
       case 5:
         classname = "warning"
-      break;
+        break;
     }
 
     return classname
@@ -121,7 +121,7 @@ function Map(props: Props) {
   return (
     <div>
       {modal}
-      <MapContainer center={[50, 9]} zoom={6} scrollWheelZoom={true} style={{ height: "83vh", width: "100%" }}>
+      <MapContainer center={[50, 9]} zoom={6} scrollWheelZoom={true} style={{ height: "80vh", width: "100%" }}>
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
