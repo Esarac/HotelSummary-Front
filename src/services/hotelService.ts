@@ -14,8 +14,8 @@ export const getHotelsByYear = async (year: string) => {
     return res
 }
 
-export const getHotel = async (hotel: string) => {
-    const res = await axios.get<Hotel[]>(`${HOTEL_BASE_URL}/hotels/${hotel}`)
+export const searchHotel = async (hotel: string) => {
+    const res = await axios.get<Hotel[]>(`${HOTEL_BASE_URL}/search/${hotel}`)
     return res
 }
 

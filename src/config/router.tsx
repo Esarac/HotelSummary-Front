@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Navigate } from "react-router-dom";
 import Map from '../pages/MapPage'
 import Rate from '../pages/RatePage'
 import NotFound from '../pages/NotFoundPage'
+import Search from "../pages/SearchPage";
 
 const routes = (
     <Router>
@@ -12,6 +13,7 @@ const routes = (
             <Route path="/" element={<Navigate to="/map" />} />
             <Route path="/map" element={<Map/>} />
             <Route path="/rate" element={<Rate/>} />
+            <Route path="/search" element={<Search/>}></Route>
             <Route path="*" element={<NotFound/>} />
         </Routes>
     </Router>
