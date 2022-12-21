@@ -2,7 +2,7 @@ import "leaflet/dist/leaflet.css";
 import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet'
 import SearchControl from "./searchControl";
 import L from 'leaflet';
-import React, { useEffect, useState } from "react";
+import React, { ReactNode, useEffect, useState } from "react";
 import { Hotel } from "../../models/models";
 import Button from '@mui/material/Button';
 import { Modal } from "../modal/modal";
@@ -81,6 +81,10 @@ const icons: { [name: string]: Icon } = {
       shadowSize: [41, 41]
     })
   }
+}
+
+function Legend(position: number, content: ReactNode){
+
 }
 
 function Map(props: Props) {

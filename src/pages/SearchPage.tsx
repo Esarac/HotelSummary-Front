@@ -7,10 +7,11 @@ import CardView from '../components/card/CardView'
 
 function SearchPage() {
     const [searchValue, setSearchValue] = useState<string>('')
+    const [tempSearchValue, setTempSearchValue] = useState<string>('')
     const [year, setYear] = useState<number>(2022)
     const [hotels, setHotels] = useState<React.ReactNode>(null)
 
-    const search = (value: string) => {
+    const search = (value: string, year: number) => {
 
         if (value.length > 0) {
             searchHotel(value, year)
@@ -20,7 +21,7 @@ function SearchPage() {
                         setHotels(
                             <>
                                 <div className='message'>
-                                    <small className='text-muted'>Searching "{searchValue}" - {found.length} results ({year})</small>
+                                    <small className='text-muted'>Searching "{value}" - {found.length} results ({year})</small>
                                 </div>
                                 {
                                     found.map((hotel) => {
@@ -34,7 +35,7 @@ function SearchPage() {
                     else
                         setHotels(
                             <div className='message'>
-                                <small className='text-muted'>Searching "{searchValue}" - 0 results ({year})</small>
+                                <small className='text-muted'>Searching "{value}" - 0 results ({year})</small>
                             </div>
                         )
                 })
@@ -78,8 +79,14 @@ function SearchPage() {
                             max={2022}
                             min={2003}
                             valueLabelDisplay="on"
-                            onChange={(_, value) => setYear(value as number)}
-                            marks={marks} />
+                            onChange={(_, value) => {
+                                setYear(value as number)
+                                console.log(tempSearchValue)
+                                if (searchValue != '')
+                                    search(tempSearchValue, value as number)
+                            }}
+                            marks={marks}
+                            track={false} />
                     </Box>
                 </Form.Group>
                 <Form.Group>
@@ -94,7 +101,10 @@ function SearchPage() {
                             />
                         </Col>
                         <Col>
-                            <Button variant='contained' onClick={() => search(searchValue)}>Search</Button>
+                            <Button variant='contained' onClick={() => {
+                                setTempSearchValue(searchValue)
+                                search(searchValue, year)
+                            }}>Search</Button>
                         </Col>
                     </Row>
                 </Form.Group>
